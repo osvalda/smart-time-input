@@ -1,0 +1,81 @@
+import React, { useState } from 'react'
+import { is24hTime, addColonToTime, completeTime } from './utils';
+
+export interface SmartTimeInputProps extends React.PropsWithChildren {
+    id?: string;
+    initTime?: string;
+    disabled?: boolean;
+    placeholder?: string;
+    className?: string;
+    divClassName?: string;
+    name?: string;
+    ref?: React.Ref<HTMLInputElement>;
+    onFocusHandler?: (e: React.FocusEvent<HTMLInputElement>) => void;
+    onTimeChange?: (val: string) => void;
+    onBlurHandlerSuper?: (e: React.FocusEvent<HTMLInputElement>) => void;
+}
+export const SmartTimeInput: React.FC<SmartTimeInputProps> = ({
+    id,
+    initTime,
+    disabled,
+    placeholder,
+    className,
+    divClassName,
+    name,
+    ref,
+    onFocusHandler,
+    onTimeChange,
+    onBlurHandlerSuper,
+    children
+}) => {
+    const [time, setTime] = useState(initTime || '');
+    let lastVal = '';
+
+    const handleTimeChange = (val: string) => {
+        if (val == time) {
+            return;
+        }
+        if (is24hTime(val)) {
+            val = addColonToTime(val, lastVal);
+
+            if (val.length > 5) {
+                return;
+            }
+
+            lastVal = val;
+            setTime(val);
+
+            if (val.length === 5 && onTimeChange) {
+                onTimeChange(val);
+            }
+        }
+    }
+
+    const autoExtendTime = (event: any) => {
+        handleTimeChange(completeTime(event.target.value));
+
+        if (onBlurHandlerSuper) {
+            onBlurHandlerSuper(event);
+        }
+    }
+
+    return (
+        <div className={divClassName}>
+            <input
+                id={id ? id : undefined}
+                name={name ? name : undefined}
+                className={className}
+                type={'text'}
+                disabled={disabled}
+                placeholder={placeholder}
+                value={time}
+                onChange={(e) => handleTimeChange(e.target.value)}
+                onBlur={(e) => autoExtendTime(e)}
+                onFocus={(onFocusHandler) ? (e) => onFocusHandler(e) : undefined}
+                ref={ref}
+            />
+            {children}
+        </div>
+    );
+
+}
