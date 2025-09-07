@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { is24hTime, addColonToTime, completeTime } from './utils';
 
-export interface SmartTimeInputProps extends React.PropsWithChildren {
+interface SmartTimeInputProps extends React.PropsWithChildren {
     id?: string;
     initTime?: string;
     disabled?: boolean;
@@ -14,7 +14,7 @@ export interface SmartTimeInputProps extends React.PropsWithChildren {
     onTimeChange?: (val: string) => void;
     onBlurHandlerSuper?: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
-export const SmartTimeInput: React.FC<SmartTimeInputProps> = ({
+const SmartTimeInput: React.FC<SmartTimeInputProps> = ({
     id,
     initTime,
     disabled,
@@ -79,3 +79,6 @@ export const SmartTimeInput: React.FC<SmartTimeInputProps> = ({
     );
 
 }
+
+export { SmartTimeInput };
+export type { SmartTimeInputProps };

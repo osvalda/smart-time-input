@@ -1,6 +1,8 @@
+[![NPM Version](https://img.shields.io/npm/v/%40osvalda%2Fsmart-time-input)](https://www.npmjs.com/package/@osvalda/smart-time-input)
+
 ## Smart Time Input React Component
 
-# Intall
+# Install
 
 ```
 npm install smart-time-input
