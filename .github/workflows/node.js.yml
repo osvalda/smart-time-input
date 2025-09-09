@@ -27,6 +27,7 @@ jobs:
     - run: npm run build --if-present
     - run: npm test
     - name: Generate ci bade JSONs
+      if: ${{ matrix.node-version == 20 }}
       uses: gaelgirodon/ci-badges-action@v1
       with:
         gist-id: <gist-id>
