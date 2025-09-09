@@ -26,9 +26,11 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
-    - name: Update Coverage Badge
-      if: ${{ matrix.node-version == 20 }}
-      uses: we-cli/coverage-badge-action@main
+    - name: Generate ci bade JSONs
+      uses: gaelgirodon/ci-badges-action@v1
+      with:
+        gist-id: <gist-id>
+        token: ${{ secrets.GIST_TOKEN }}
     - uses: actions/upload-artifact@v4
       with:
         name: coverage-artifacts-${{ matrix.node-version }}
