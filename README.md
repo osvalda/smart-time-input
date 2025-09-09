@@ -1,5 +1,6 @@
 [![Node.js CI](https://github.com/osvalda/smart-time-input/actions/workflows/node.js.yml/badge.svg)](https://github.com/osvalda/smart-time-input/actions/workflows/node.js.yml)
 [![NPM Version](https://img.shields.io/npm/v/%40osvalda%2Fsmart-time-input)](https://www.npmjs.com/package/@osvalda/smart-time-input)
+[![cov](https://osvalda.github.io/smart-time-input/badges/coverage.svg)](https://github.com/osvalda/smart-time-input/actions)
 
 ## Smart Time Input React Component
 
