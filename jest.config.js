@@ -15,4 +15,5 @@ module.exports = {
     'src/**/*.{ts,tsx}'
   ],
   verbose: true,
+  reporters: [['github-actions', {silent: false}], 'summary'],
 };
