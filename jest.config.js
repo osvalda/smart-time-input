@@ -14,6 +14,7 @@ module.exports = {
   collectCoverageFrom: [
     'src/**/*.{ts,tsx}'
   ],
+  coverageReporters: ['json-summary', "clover", "json", "lcov", "text"],
   verbose: true,
   reporters: [['github-actions', {silent: false}], 'summary'],
 };
