@@ -31,5 +31,5 @@ jobs:
       uses: we-cli/coverage-badge-action@main
     - uses: actions/upload-artifact@v4
       with:
-      name: coverage-artifacts
-      path: coverage # or path/to/artifact
+        name: coverage-artifacts
+        path: coverage # or path/to/artifact
