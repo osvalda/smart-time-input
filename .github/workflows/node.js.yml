@@ -30,7 +30,7 @@ jobs:
       if: ${{ matrix.node-version == 20 }}
       uses: gaelgirodon/ci-badges-action@v1
       with:
-        gist-id: <gist-id>
+        gist-id: 334525743d4f008bb0028808bfc44798
         token: ${{ secrets.GIST_TOKEN }}
     - uses: actions/upload-artifact@v4
       with:
