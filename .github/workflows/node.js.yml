@@ -32,6 +32,7 @@ jobs:
       with:
         gist-id: 334525743d4f008bb0028808bfc44798
         token: ${{ secrets.GIST_TOKEN }}
+        ref: true
     - uses: actions/upload-artifact@v4
       with:
         name: coverage-artifacts-${{ matrix.node-version }}

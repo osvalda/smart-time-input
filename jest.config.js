@@ -16,5 +16,5 @@ module.exports = {
   ],
   coverageReporters: ['json-summary', "clover", "json", "lcov", "text"],
   verbose: true,
-  reporters: [['github-actions', {silent: false}], 'summary'],
+  reporters: [['github-actions', {silent: false}], 'summary', 'jest-junit'],
 };
