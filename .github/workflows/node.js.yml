@@ -41,6 +41,7 @@ jobs:
         path: coverage
 
     - name: Jest Coverage Comment
+      id: coverage
       uses: MishaKav/jest-coverage-comment@main
       with:
         title: Code Coverage Information
@@ -50,5 +51,5 @@ jobs:
     - name: Fail if coverage too low
       if: ${{ steps.coverage.outputs.coverage < 10 }}
       run: |
-        echo "Coverage is below 10%!"
+        echo "Coverage is below 10%! It is: ${{ steps.coverage.outputs.coverage }}"
         exit 1
