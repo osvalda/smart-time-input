@@ -2,8 +2,8 @@
 ![GitHub package.json dev/peer/optional dependency version](https://img.shields.io/github/package-json/dependency-version/osvalda/smart-time-input/dev/react)
 ![GitHub package.json dev/peer/optional dependency version](https://img.shields.io/github/package-json/dependency-version/osvalda/smart-time-input/dev/typescript)
 [![Node.js CI](https://github.com/osvalda/smart-time-input/actions/workflows/node.js.yml/badge.svg)](https://github.com/osvalda/smart-time-input/actions/workflows/node.js.yml)
-![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fosvalda%2F334525743d4f008bb0028808bfc44798%2Fraw%2Fsmart-time-input-1-merge-junit-tests.json)
-![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fosvalda%2F334525743d4f008bb0028808bfc44798%2Fraw%2Fsmart-time-input-lcov-coverage.json)
+![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fosvalda%2F334525743d4f008bb0028808bfc44798%2Fraw%2Fsmart-time-input-main-junit-tests.json)
+![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fosvalda%2F334525743d4f008bb0028808bfc44798%2Fraw%2Fsmart-time-input-main-lcov-coverage.json)
 
 ## Smart Time Input React Component
 

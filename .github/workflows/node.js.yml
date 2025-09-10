@@ -13,8 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [20, 22, 24]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        node-version: [22, 24]
 
     steps:
     - uses: actions/checkout@v4
@@ -23,11 +22,32 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+
     - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+    - run: npm run build
+
+  test:
+    needs: build
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20, 22, 24]
+    
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm ci
+
+    - run: npm test | tee ./coverage.txt && exit ${PIPESTATUS[0]}
+
     - name: Generating ci badge JSONs
-      if: ${{ matrix.node-version == 20 }}
+      if: ${{ matrix.node-version == 20 && github.ref == 'refs/heads/main' }}
       uses: gaelgirodon/ci-badges-action@v1
       with:
         gist-id: 334525743d4f008bb0028808bfc44798
@@ -36,4 +56,19 @@ jobs:
     - uses: actions/upload-artifact@v4
       with:
         name: coverage-artifacts-${{ matrix.node-version }}
-        path: coverage # or path/to/artifact
+        path: coverage
+
+    - name: Jest Coverage Comment
+      id: coverage
+      uses: MishaKav/jest-coverage-comment@main
+      with:
+        title: Code Coverage Information
+        summary-title: Code Coverage summary
+        coverage-title: Coverage details
+        coverage-path: ./coverage.txt
+        coverage-path-prefix: src/
+    - name: Fail if coverage too low
+      if: ${{ steps.coverage.outputs.coverage < 50 }}
+      run: |
+        echo "Coverage is below 50%!"
+        exit 1
