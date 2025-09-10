@@ -47,7 +47,7 @@ jobs:
     - run: npm test | tee ./coverage.txt && exit ${PIPESTATUS[0]}
 
     - name: Generating ci badge JSONs
-      if: ${{ matrix.node-version == 20 }}
+      if: ${{ matrix.node-version == 20 && github.ref == 'refs/heads/main' }}
       uses: gaelgirodon/ci-badges-action@v1
       with:
         gist-id: 334525743d4f008bb0028808bfc44798
