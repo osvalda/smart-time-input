@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [20, 22, 24]
+        node-version: [22, 24]
 
     steps:
     - uses: actions/checkout@v4
@@ -26,6 +26,15 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
 
+  test:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20, 22, 24]
+    
+    steps:
     - run: npm test | tee ./coverage.txt && exit ${PIPESTATUS[0]}
 
     - name: Generating ci badge JSONs
@@ -49,7 +58,7 @@ jobs:
         coverage-title: Coverage details
         coverage-path: ./coverage.txt
     - name: Fail if coverage too low
-      if: ${{ steps.coverage.outputs.coverage < 10 }}
+      if: ${{ steps.coverage.outputs.coverage < 50 }}
       run: |
-        echo "Coverage is below 10%! It is: ${{ steps.coverage.outputs.coverage }}"
+        echo "Coverage is below 50%!"
         exit 1
