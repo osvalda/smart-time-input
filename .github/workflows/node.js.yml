@@ -37,3 +37,6 @@ jobs:
       with:
         name: coverage-artifacts-${{ matrix.node-version }}
         path: coverage # or path/to/artifact
+
+    - name: Jest Coverage Comment
+      uses: MishaKav/jest-coverage-comment@main
