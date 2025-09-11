@@ -26,7 +26,8 @@ const SmartTimeInput: React.FC<SmartTimeInputProps> = ({
     onFocusHandler,
     onTimeChange,
     onBlurHandlerSuper,
-    children
+    children,
+    ...rest
 }) => {
     const [time, setTime] = useState(initTime || '');
     let lastVal = '';
@@ -73,6 +74,7 @@ const SmartTimeInput: React.FC<SmartTimeInputProps> = ({
                 onBlur={(e) => autoExtendTime(e)}
                 onFocus={(onFocusHandler) ? (e) => onFocusHandler(e) : undefined}
                 ref={ref}
+                {...rest}
             />
             {children}
         </div>
