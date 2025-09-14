@@ -4,6 +4,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  pull-requests: write
 
 on:
   push:
@@ -32,7 +33,7 @@ jobs:
     - run: npm run build
     - run: npm run demo
     - name: Upload demo files as artifact
-      if: ${{ matrix.node-version == 22 }} # && github.ref == 'refs/heads/main'
+      if: ${{ matrix.node-version == 22 }}
       id: deployment
       uses: actions/upload-pages-artifact@v3
       with:
@@ -93,5 +94,6 @@ jobs:
     needs: build
     steps:
       - name: Deploy Demo to GitHub Pages
+        if: ${{ github.ref == 'refs/heads/main'}}
         id: deployment
         uses: actions/deploy-pages@v4
