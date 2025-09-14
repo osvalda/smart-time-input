@@ -34,7 +34,7 @@ jobs:
     strategy:
       matrix:
         node-version: [20, 22, 24]
-    
+
     steps:
     - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
@@ -68,7 +68,7 @@ jobs:
         coverage-path: ./coverage.txt
         coverage-path-prefix: src/
     - name: Fail if coverage too low
-      if: ${{ steps.coverage.outputs.coverage < 50 }}
+      if: ${{ steps.coverage.outputs.coverage < 95 }}
       run: |
         echo "Coverage is below 50%!"
         exit 1
