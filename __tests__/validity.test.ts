@@ -34,7 +34,7 @@ describe('24h time format Hour validity tests', () => {
   })
 
   it('24 hour is provisionary accepted', () => {
-    expect(is24hTime("24:")).toBeTruthy();
+    expect(is24hTime("24")).toBeTruthy();
   })
 
   it('Empty hour is provisionary accepted', () => {
