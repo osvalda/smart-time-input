@@ -1,5 +1,5 @@
 export const is24hTime = (val: string) => {
-    if (!/^($)|^\d{1,2}\:?\d{0,2}$/.test(val)) {
+    if (!/^(\:)|^($)|^\d{1,2}\:?\d{0,2}$/.test(val)) {
         return false;
     }
 
@@ -46,6 +46,10 @@ export const addColonToTime = (val: string, lastVal: string): string => {
 
     if (val.length === 1 && val.indexOf(':') === -1 && (Number(val) > 2 && Number(val) <= 9)) {
         return "0" + val + ':';
+    }
+
+    if (val.length === 1 && val.indexOf(':') !== -1) {
+        return "00" + val;
     }
 
     if (val.length === 2 && val.indexOf(':') !== -1) {

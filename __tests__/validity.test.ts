@@ -37,12 +37,13 @@ describe('24h time format Hour validity tests', () => {
     expect(is24hTime("24:")).toBeTruthy();
   })
 
+  it('Empty hour is provisionary accepted', () => {
+    expect(is24hTime(":")).toBeTruthy();
+  })
+
 });
 
 describe('24h time format Hour validity negative tests', () => {
-  it('Empty hour is Not accepted', () => {
-    expect(is24hTime(":")).toBeFalsy();
-  })
 
   it('String as hour is Not accepted', () => {
     expect(is24hTime("HH:")).toBeFalsy();
