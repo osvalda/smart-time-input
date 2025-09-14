@@ -41,6 +41,24 @@ describe('Editing time', () => {
         expect(input).toHaveValue('11:');
     });
 
+    test('Hour above 24 handling. 24 -> 02:4:', async () => {
+        render(<SmartTimeInput data-testid='input' />);
+        const input = screen.getByTestId('input');
+        expect(input).toBeInTheDocument();
+
+        await userEvent.type(input, "24");
+        expect(input).toHaveValue('02:4');
+    });
+
+    test('Hour above 24 handling. 24 -> 02:4:', async () => {
+        render(<SmartTimeInput data-testid='input' />);
+        const input = screen.getByTestId('input');
+        expect(input).toBeInTheDocument();
+
+        await userEvent.type(input, "99");
+        expect(input).toHaveValue('09:09');
+    });
+
     test('Whole time provided', async () => {
         render(<SmartTimeInput placeholder='hh:mm' />);
         const input = screen.getByPlaceholderText('hh:mm');

@@ -38,5 +38,13 @@ describe('Colon positioning tests', () => {
         expect(addColonToTime("", "")).toBe("");
     })
 
+    it('Hour above 23', () => {
+        expect(addColonToTime("24", "")).toBe("02:4");
+    })
+
+    it('Hour above 23 ant minute above 5', () => {
+        expect(addColonToTime("99", "")).toBe("09:09");
+    })
+
 });
 

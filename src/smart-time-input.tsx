@@ -37,13 +37,7 @@ const SmartTimeInput: React.FC<SmartTimeInputProps> = ({
             return;
         }
         if (is24hTime(val)) {
-            val = addColonToTime(val, lastVal);
-
-            if (val.length > 5) {
-                return;
-            }
-
-            lastVal = val;
+            lastVal = val = addColonToTime(val, lastVal);
             setTime(val);
 
             if (val.length === 5 && onTimeChange) {
@@ -63,8 +57,8 @@ const SmartTimeInput: React.FC<SmartTimeInputProps> = ({
     return (
         <div className={divClassName}>
             <input
-                id={id ? id : undefined}
-                name={name ? name : undefined}
+                id={id}
+                name={name}
                 className={className}
                 type={'text'}
                 disabled={disabled}

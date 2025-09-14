@@ -4,7 +4,7 @@ export const is24hTime = (val: string) => {
     }
 
     const valArr = val.split(':');
-    if (valArr[0] && parseInt(valArr[0], 10) > 23) {
+    if (valArr[0] && parseInt(valArr[0], 10) > 23 && val.length === 5) {
         return false;
     }
 
@@ -34,6 +34,13 @@ export const completeTime = (val: string): string => {
 
 export const addColonToTime = (val: string, lastVal: string): string => {
     if (val.length === 2 && lastVal.length !== 3 && val.indexOf(':') === -1) {
+        if (Number(val) > 23) {
+            let result: string = '0' + val.slice(0, 1) + ':' + val.slice(1, 2);
+            if (Number(val.slice(1, 2)) > 5) {
+                result = completeTime(result);
+            }
+            return result;
+        }
         return val + ':';
     }
 

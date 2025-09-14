@@ -33,15 +33,15 @@ describe('24h time format Hour validity tests', () => {
     expect(is24hTime("9:")).toBeTruthy();
   })
 
+  it('24 hour is provisionary accepted', () => {
+    expect(is24hTime("24:")).toBeTruthy();
+  })
+
 });
 
 describe('24h time format Hour validity negative tests', () => {
   it('Empty hour is Not accepted', () => {
     expect(is24hTime(":")).toBeFalsy();
-  })
-
-  it('24 hour is Not accepted', () => {
-    expect(is24hTime("24:")).toBeFalsy();
   })
 
   it('String as hour is Not accepted', () => {
@@ -80,6 +80,10 @@ describe('24h time format Minute validity tests', () => {
 describe('24h time format Minute validity negative tests', () => {
   it('Minute above 59 is unaccepted', () => {
     expect(is24hTime("20:99")).toBeFalsy();
+  })
+
+  it('Hour above 24 is unaccepted', () => {
+    expect(is24hTime("25:09")).toBeFalsy();
   })
   it('String as minute is unaccepted', () => {
     expect(is24hTime("20:mm")).toBeFalsy();
