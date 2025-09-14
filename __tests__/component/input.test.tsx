@@ -179,6 +179,23 @@ describe('Any other tests', () => {
         expect(input).toHaveValue('12:09');
     });
 
+    test(': is extended to zero hour', async () => {
+        render(<SmartTimeInput data-testid='input' />);
+        const input = screen.getByTestId('input');
+        expect(input).toBeInTheDocument();
+
+        await userEvent.type(input, ":");
+        expect(input).toHaveValue('00:');
+    });
+
+    test(':: is cut ot single :', async () => {
+        render(<SmartTimeInput data-testid='input' />);
+        const input = screen.getByTestId('input');
+        expect(input).toBeInTheDocument();
+
+        await userEvent.type(input, "::");
+        expect(input).toHaveValue('00:');
+    });
 });
 
 function TestButton() {
