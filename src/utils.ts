@@ -1,5 +1,5 @@
 export const is24hTime = (val: string) => {
-    if (!/^(\:)|^($)|^\d{1,2}\:?\d{0,2}$/.test(val)) {
+    if (!/^(:)|^($)|^\d{1,2}:?\d{0,2}$/.test(val)) {
         return false;
     }
 
