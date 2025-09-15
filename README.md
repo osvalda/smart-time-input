@@ -15,6 +15,8 @@ This React input component is designed specifically to manage time in a 24-hour 
 - *Colon Placement*: It intelligently inserts the colon (:) in the correct position.
 - *Validation*: The component ensures that only valid time values are accepted, maintaining data integrity.
 
+Try out the [demo app](https://osvalda.github.io/smart-time-input/)
+
 # Install
 
 ```bash
