@@ -1,6 +1,6 @@
 {
   "name": "@osvalda/smart-time-input",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "React 24h time input component",
   "main": "dist/smart-time-input.js",
   "scripts": {
