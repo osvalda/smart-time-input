@@ -1,0 +1,7 @@
+/__tests__
+/demo
+/.github
+
+jest.config.js
+eslint.config.mjs
+webpack.config.js
