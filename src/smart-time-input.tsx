@@ -38,7 +38,7 @@ const SmartTimeInput: React.FC<SmartTimeInputProps> = ({
         }
     }
 
-    const autoExtendTime = (event: any) => {
+    const autoExtendTime = (event: React.FocusEvent<HTMLInputElement>) => {
         handleTimeChange(completeTime(event.target.value));
 
         if (onBlurHandlerSuper) {

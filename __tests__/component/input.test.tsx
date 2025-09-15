@@ -3,66 +3,63 @@ import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
 import { SmartTimeInput } from '../../src/smart-time-input'
 
+function renderSut(disabled?: boolean): HTMLElement[] {
+    render(<SmartTimeInput data-testid='input' disabled={disabled}/>);
+    render(<TestButton />);
+    const button = screen.getByTestId('testBtn');
+    expect(button).toBeInTheDocument();
+    const input: HTMLElement = screen.getByTestId('input');
+    expect(input).toBeInTheDocument();
+
+    return [input, button];
+}
+
 describe('Editing time', () => {
 
     test('Single hour handling. 6 -> 06:', async () => {
-        render(<SmartTimeInput data-testid='input' />);
-        const input = screen.getByTestId('input');
-        expect(input).toBeInTheDocument();
+        const [input] = renderSut();
 
         await userEvent.type(input, "6");
         expect(input).toHaveValue('06:');
     });
 
     test('Single hour handling. 2 -> 2', async () => {
-        render(<SmartTimeInput data-testid='input' />);
-        const input = screen.getByTestId('input');
-        expect(input).toBeInTheDocument();
+        const [input] = renderSut();
 
         await userEvent.type(input, "2");
         expect(input).toHaveValue('2');
     });
 
     test('Single hour handling. 69 -> 06:09', async () => {
-        render(<SmartTimeInput data-testid='input' />);
-        const input = screen.getByTestId('input');
-        expect(input).toBeInTheDocument();
+        const [input] = renderSut();
 
         await userEvent.type(input, "69");
         expect(input).toHaveValue('06:09');
     });
 
     test('Double hour handling. 11 -> 11:', async () => {
-        render(<SmartTimeInput data-testid='input' />);
-        const input = screen.getByTestId('input');
-        expect(input).toBeInTheDocument();
+        const [input] = renderSut();
 
         await userEvent.type(input, "11");
         expect(input).toHaveValue('11:');
     });
 
     test('Hour above 24 handling. 24 -> 02:4:', async () => {
-        render(<SmartTimeInput data-testid='input' />);
-        const input = screen.getByTestId('input');
-        expect(input).toBeInTheDocument();
+        const [input] = renderSut();
 
         await userEvent.type(input, "24");
         expect(input).toHaveValue('02:4');
     });
 
     test('Hour above 24 handling. 24 -> 02:4:', async () => {
-        render(<SmartTimeInput data-testid='input' />);
-        const input = screen.getByTestId('input');
-        expect(input).toBeInTheDocument();
+        const [input] = renderSut();
 
         await userEvent.type(input, "99");
         expect(input).toHaveValue('09:09');
     });
 
     test('Whole time provided', async () => {
-        render(<SmartTimeInput placeholder='hh:mm' />);
-        const input = screen.getByPlaceholderText('hh:mm');
-        expect(input).toBeInTheDocument();
+        const [input] = renderSut();
 
         await userEvent.type(input, "1234");
         expect(input).toHaveValue('12:34');
@@ -72,12 +69,7 @@ describe('Editing time', () => {
 describe('Blur effect tests', () => {
 
     test('Single hour is completed if user clicks away', async () => {
-        render(<SmartTimeInput data-testid='input' />);
-        render(<TestButton />);
-        const input = screen.getByTestId('input');
-        const button = screen.getByTestId('testBtn');
-        expect(input).toBeInTheDocument();
-        expect(button).toBeInTheDocument();
+        const [input, button] = renderSut();
 
         await userEvent.type(input, "1");
         await userEvent.click(button);
@@ -85,12 +77,7 @@ describe('Blur effect tests', () => {
     });
 
     test('Double hour is completed if user clicks away', async () => {
-        render(<SmartTimeInput data-testid='input' />);
-        render(<TestButton />);
-        const input = screen.getByTestId('input');
-        const button = screen.getByTestId('testBtn');
-        expect(input).toBeInTheDocument();
-        expect(button).toBeInTheDocument();
+        const [input, button] = renderSut();
 
         await userEvent.type(input, "23");
         await userEvent.click(button);
@@ -98,12 +85,7 @@ describe('Blur effect tests', () => {
     });
 
     test('Double hour and minute is completed if user clicks away', async () => {
-        render(<SmartTimeInput data-testid='input' />);
-        render(<TestButton />);
-        const input = screen.getByTestId('input');
-        const button = screen.getByTestId('testBtn');
-        expect(input).toBeInTheDocument();
-        expect(button).toBeInTheDocument();
+        const [input, button] = renderSut();
 
         await userEvent.type(input, "232");
         await userEvent.click(button);
@@ -111,12 +93,7 @@ describe('Blur effect tests', () => {
     });
 
     test('Already complete time is NOT completed if user clicks away', async () => {
-        render(<SmartTimeInput data-testid='input' />);
-        render(<TestButton />);
-        const input = screen.getByTestId('input');
-        const button = screen.getByTestId('testBtn');
-        expect(input).toBeInTheDocument();
-        expect(button).toBeInTheDocument();
+        const [input, button] = renderSut();
 
         await userEvent.type(input, "1234");
         await userEvent.click(button);
@@ -124,12 +101,7 @@ describe('Blur effect tests', () => {
     });
 
     test('Empty hour is completed if user clicks away', async () => {
-        render(<SmartTimeInput data-testid='input' />);
-        render(<TestButton />);
-        const input = screen.getByTestId('input');
-        const button = screen.getByTestId('testBtn');
-        expect(input).toBeInTheDocument();
-        expect(button).toBeInTheDocument();
+        const [input, button] = renderSut();
 
         await userEvent.click(input);
         await userEvent.click(button);
@@ -140,12 +112,7 @@ describe('Blur effect tests', () => {
 describe('Any other tests', () => {
 
     test('Cannot interact if disabled', async () => {
-        render(<SmartTimeInput data-testid='input' disabled={true} />);
-        render(<TestButton />);
-        const input = screen.getByTestId('input');
-        const button = screen.getByTestId('testBtn');
-        expect(input).toBeInTheDocument();
-        expect(button).toBeInTheDocument();
+        const [input, button] = renderSut(true);
 
         await userEvent.click(input);
         await userEvent.click(button);
@@ -153,45 +120,35 @@ describe('Any other tests', () => {
     });
 
     test('Too long time is cut to fit', async () => {
-        render(<SmartTimeInput data-testid='input' />);
-        const input = screen.getByTestId('input');
-        expect(input).toBeInTheDocument();
+        const [input] = renderSut();
 
         await userEvent.type(input, "000000");
         expect(input).toHaveValue('00:00');
     });
 
     test('Non time string is ignored', async () => {
-        render(<SmartTimeInput data-testid='input' />);
-        const input = screen.getByTestId('input');
-        expect(input).toBeInTheDocument();
+        const [input] = renderSut();
 
         await userEvent.type(input, "Ignored");
         expect(input).toHaveValue('');
     });
 
     test('Wrong time string is ignored', async () => {
-        render(<SmartTimeInput data-testid='input' />);
-        const input = screen.getByTestId('input');
-        expect(input).toBeInTheDocument();
+        const [input] = renderSut();
 
         await userEvent.type(input, "12:99");
         expect(input).toHaveValue('12:09');
     });
 
     test(': is extended to zero hour', async () => {
-        render(<SmartTimeInput data-testid='input' />);
-        const input = screen.getByTestId('input');
-        expect(input).toBeInTheDocument();
+        const [input] = renderSut();
 
         await userEvent.type(input, ":");
         expect(input).toHaveValue('00:');
     });
 
     test(':: is cut ot single :', async () => {
-        render(<SmartTimeInput data-testid='input' />);
-        const input = screen.getByTestId('input');
-        expect(input).toBeInTheDocument();
+        const [input] = renderSut();
 
         await userEvent.type(input, "::");
         expect(input).toHaveValue('00:');
