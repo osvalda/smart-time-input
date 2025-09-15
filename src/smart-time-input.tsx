@@ -2,26 +2,18 @@ import React, { useState } from 'react'
 import { is24hTime, addColonToTime, completeTime } from './utils';
 
 interface SmartTimeInputProps extends React.PropsWithChildren {
-    id?: string;
     initTime?: string;
-    disabled?: boolean;
-    placeholder?: string;
     className?: string;
     divClassName?: string;
-    name?: string;
     ref?: React.Ref<HTMLInputElement>;
     onFocusHandler?: (e: React.FocusEvent<HTMLInputElement>) => void;
     onTimeChange?: (val: string) => void;
     onBlurHandlerSuper?: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
 const SmartTimeInput: React.FC<SmartTimeInputProps> = ({
-    id,
     initTime,
-    disabled,
-    placeholder,
     className,
     divClassName,
-    name,
     ref,
     onFocusHandler,
     onTimeChange,
@@ -57,12 +49,8 @@ const SmartTimeInput: React.FC<SmartTimeInputProps> = ({
     return (
         <div className={divClassName}>
             <input
-                id={id}
-                name={name}
                 className={className}
                 type={'text'}
-                disabled={disabled}
-                placeholder={placeholder}
                 value={time}
                 onChange={(e) => handleTimeChange(e.target.value)}
                 onBlur={(e) => autoExtendTime(e)}
