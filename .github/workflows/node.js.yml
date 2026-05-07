@@ -97,7 +97,7 @@ jobs:
     - name: Fail if coverage too low
       if: ${{ steps.coverage.outputs.coverage < 95 }}
       run: |
-        echo "Coverage is below 50%!"
+        echo "Coverage is below 95%!"
         exit 1
 
   deploy:
