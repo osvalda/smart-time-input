@@ -25,7 +25,7 @@ npm install @osvalda/smart-time-input --save
 
 # Usage
 
-## Use in jsx 
+## Use in jsx/tsx
 
 ```jsx
 import { SmartTimeInput } from '@osvalda/smart-time-input';
@@ -42,19 +42,18 @@ return (
 );
 ```
 
-## Smart Time Input Props
-|Name              |Type      |Requires|Description                               |
-|------------------|----------|--------|------------------------------------------|
-|initTime          |string    |no      |The initial time value the input will hold|
-|className         |string    |no      |Input fields class names                  |
-|divClassName      |string    |no      |The wrapper div's class names             |
-|onFocusHandler    |FocusEvent|no      |Custom focus handler for the input field  |
-|onTimeChange      |FocusEvent|no      |Custom handler when the time has changed  |
-|onBlurHandlerSuper|FocusEvent|no      |Custom handler for blur                   |
+## Smart Time Input Props (`SmartTimeInputProps`)
+|Name              |Type      |Required|Description                               |Example|
+|------------------|----------|--------|------------------------------------------|-------|
+|initTime          |string    |no      |The initial time value the input will hold|12:15  |
+|className         |string    |no      |Input field's class names                 |'r-5'  |
+|divClassName      |string    |no      |The wrapper div's class names             |'border-l-4'|
+|onTimeChange      |FocusEvent|no      |Change handler of the time value          ||
+|onBlurHandlerSuper|FocusEvent|no      |Blur handler of the input field           ||
 
 ## Styling and children
 
-The input and optional children components are wrapped aroound a div with own styleing options via classNames.
+The input and optional children components are wrapped around a div with own styleing options via `classNames`.
 The input filed can hold icons or interactive elements to enhance its visual appearing. 
 
 Radix ui example:
@@ -84,7 +83,7 @@ return (
 The project uses Jest as test framework with coverage measurement.
 Currently unit and component level tests are available.
 
-To run all automated test use the following command:
+To run all automated tests use the following command:
 
 ```bash
 npm test
